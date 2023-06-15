@@ -17,12 +17,12 @@ public class TestPozitiveCard {
     private WebDriver driver;
 
     @BeforeAll
-    public static void setup(){
+    public static void setup() {
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
-    public void beforeEach(){
+    public void beforeEach() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shn-usage");
         options.addArguments("--no sandbox");
@@ -32,20 +32,19 @@ public class TestPozitiveCard {
     }
 
     @AfterEach
-    public void afterEach(){
+    public void afterEach() {
         driver.quit();
         driver = null;
     }
 
     @Test
-    public void shouldBeSuccessfulForm(){
+    public void shouldBeSuccessfulForm() {
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Марк Маркович");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79313313131");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        var actualText = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время", actualText);
-
+        var actualText = driver.findElement(By.cssSelector("[data-test-id= order-success]")).getText().trim();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
     }
 
 }
